@@ -1,5 +1,5 @@
 import re
-from funct import list_macaddr
+from funct import *
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
     elif sel_prim == "2":
         set_alarm
     elif sel_prim == "3":
-        disp_detail
+        disp_detail(url)
 
 
 main()
