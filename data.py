@@ -25,20 +25,15 @@ def list_data(raw_data):
     return mac_addr, pkts_nos
 
 
-def pkt_to_byte(pkt_nos):
-    pkt_nos = int(pkt_nos)
-    byts = int(pkt_nos / 1480)
-    return byts
-
-
-def convert_size(byts):
+def convert_pkt(pkts_nos):
+    pkts_nos = int(pkts_nos)
+    byts = int(pkts_nos * 1480)
     if byts == 0:
         return "0 B"
-    size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+    size_name = ("B", "KB", "MB", "GB")
     i = int(math.floor(math.log(byts, 1024)))
     p = math.pow(1024, i)
     s = round(byts / p, 2)
     return "%s %s" % (s, size_name[i])
-
 
 
