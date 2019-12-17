@@ -1,11 +1,8 @@
-from data import *
-from funct import *
+import funct
 
 
 def main():
-    cls()
-    url = input("URL or Enter: ") or "http://192.168.0.1/cgi?6"
-    cls()
+    funct.cls()
     sel_prim = input("\
             Welcome to tp840n:\n\
             1. Monitor Data Rates\n\
@@ -14,11 +11,11 @@ def main():
     if sel_prim == "":
         print("Select an option...")
     elif sel_prim == "1":
-        monitor_rates
+        funct.test()
     elif sel_prim == "2":
-        set_alarm
+        funct.test()
     elif sel_prim == "3":
-        disp_detail(url)
+        funct.disp_detail()
 
 
 if __name__ == "__main__":

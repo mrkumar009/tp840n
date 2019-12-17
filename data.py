@@ -1,13 +1,39 @@
+import calendar
+import math
 import re
 import requests
-import math
+import time
 
 
-def get_data(url):
-    headers = { "Referer": "http://192.168.0.1/mainFrame.htm",
-                "Cookie":  "Authorization=Basic YWRtaW46YWRtaW4="}
-    data = "[LAN_WLAN_ASSOC_DEV#0,0,0,0,0,0#1,1,0,0,0,0]0,4\r\nAssociatedDeviceMACAddress\r\nX_TP_TotalPacketsSent\r\nX_TP_TotalPacketsReceived\r\nX_TP_HostName\r\n"
-    raw_data = requests.post(url, headers=headers, data=data).text
+def get_data():
+    eptime = round(time.time() * 1000)
+    pst_url = "http://192.168.0.1/cgi"
+    headers = {
+            "Host": "192.168.0.1",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0",
+            "Accept": "*/*",
+            "Accept-Language": "en-US,en;q=0.5",
+            "Accept-Encoding": "gzip, deflate",
+            "Content-Type": "text/plain",
+            "Connection": "keep-alive",
+            "Cookie": "Authorization=Basic YWRtaW46YWRtaW4=",
+            "Pragma": "no-cache",
+            "Cache-Control": "no-cache"
+            }
+    headers["Referer"] = "http://192.168.0.1/main/wlStats.htm?_={}".format(eptime)
+    req = requests.get("http://192.168.0.1/main/wlStats.htm", headers=headers, params={"_": "{}".format(eptime)})
+    pst_url = "http://192.168.0.1/cgi?5&1"
+    headers["Referer"] = "http://192.168.0.1/cgi?5&1"
+    post_data1 = requests.post(pst_url, headers=headers, data="[LAN_WLAN#0,0,0,0,0,0#0,0,0,0,0,0]0,2\r\nname\r\nSSID\r\n[SYS_MODE#0,0,0,0,0,0#0,0,0,0,0,0]1,1\r\nmode\r\n")
+    pst_url = "http://192.168.0.1/cgi?6&1"
+    headers["Referer"] = "http://192.168.0.1/cgi?6&1"
+    post_data2 = requests.post(pst_url, headers=headers, data="[LAN_WLAN_MSSIDENTRY#0,0,0,0,0,0#1,1,0,0,0,0]0,2\r\nName\r\nSSID\r\n[LAN_WLAN_GUESTNET#1,1,0,0,0,0#0,0,0,0,0,0]1,1\r\nName\r\n")
+    pst_url = "http://192.168.0.1/cgi?7"
+    headers["Referer"] = "http://192.168.0.1/cgi?7"
+    post_data3 = requests.post(pst_url, headers=headers, data="[ACT_WLAN_UPDATE_ASSOC#1,1,0,0,0,0#0,0,0,0,0,0]0,0\r\n")
+    pst_url = "http://192.168.0.1/cgi?6"
+    headers["Referer"] = "http://192.168.0.1/cgi?6"
+    raw_data = requests.post(pst_url, headers=headers, data="[LAN_WLAN_ASSOC_DEV#0,0,0,0,0,0#1,1,0,0,0,0]0,4\r\nAssociatedDeviceMACAddress\r\nX_TP_TotalPacketsSent\r\nX_TP_TotalPacketsReceived\r\nX_TP_HostName\r\n").text
     return raw_data
 
 
