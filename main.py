@@ -2,7 +2,11 @@ from funct import *
 
 
 def main():
-    disp_detail()
+    sel = input(': ')
+    if sel == '1':
+        disp_detail()
+    elif sel == '2':
+        monitor_rates()
 
 
 if __name__ == "__main__":

@@ -41,6 +41,7 @@ def list_data(raw_data):
     return mac_addr, pkts_nos
 
 
+
 def convert_pkt(pkts_nos):
     pkts_nos = int(pkts_nos)
     byts = int(pkts_nos * 1480)
