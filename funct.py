@@ -7,6 +7,8 @@ def cls():
 
 
 def disp_detail():
+    cls()
+    print('Wait... Connecting... ')
     while True:
         try:
             raw_data = get_data()
@@ -22,6 +24,8 @@ def disp_detail():
 
 
 def monitor_rates():
+    cls()
+    print('Wait... Connecting... ')
     while True:
         try:
             raw_data = get_data()

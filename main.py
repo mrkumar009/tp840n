@@ -2,7 +2,8 @@ from funct import *
 
 
 def main():
-    sel = input(': ')
+    cls()
+    sel = input('1. Display Used Data\r\n2. Display Data Rate\r\nSelect: ')
     if sel == '1':
         disp_detail()
     elif sel == '2':
