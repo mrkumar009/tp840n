@@ -3,7 +3,7 @@ from funct import *
 
 def main():
     cls()
-    sel = input('1. Display Used Data\r\n2. Display Data Rate\r\nSelect: ')
+    sel = input('1. Display Used Data\r\n2. Display Used Data and Current Data Rate\r\nSelect: ')
     if sel == '1':
         disp_detail()
     elif sel == '2':
