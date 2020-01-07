@@ -34,8 +34,8 @@ def monitor_rates():
             cls()
             raw_data = get_data()
             mac_addr, pkts_nos = list_data(raw_data)
-            fmt = '{:<6}{:<30}{:<20}{:<20}{:<20}{:<20}'
-            print(fmt.format('No', 'Mac Address', 'Recieved Data', 'Sent Data', 'Rcd Data Rate', 'Sent Data Rate'))
+            fmt = '{:<3}{:<20}{:<14}{:<14}{:<14}{:14}'
+            print(fmt.format('No', 'Mac Address', 'Tx Data', 'Rx Data', 'Tx Rate', 'Rx Rate'))
             for i, (mac_addr, pkts_nos_rcd, pkts_nos_snd, pkts_nos_rcd_prv, pkts_nos_snd_prv) in enumerate(zip(mac_addr, pkts_nos[1::2], pkts_nos[0::2], pkts_nos_prv[1::2], pkts_nos_prv[0::2]), start=1):
                 print(fmt.format(i, mac_addr, convert_pkt(pkts_nos_rcd), convert_pkt(pkts_nos_snd), convert_pkt(int(int(pkts_nos_rcd) - int(pkts_nos_rcd_prv)) // 5), convert_pkt(int(int(pkts_nos_snd) - int(pkts_nos_snd_prv)) // 5)))
 
